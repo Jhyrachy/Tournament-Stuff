@@ -39,9 +39,10 @@ if(isset($_FILES['image'])){
 				
 				$to      = 'titadota2@gmail.com';
 				$subject = 'W: '.$vincitore.' - L: '.$sconfitto.'';
-				$message = 'Team vincitore: '.$vincitore.'
-							Team sconfitto: '.$sconfitto.'
-							Screenshoot: '.$path.' ';
+				$message = 'Risultati incontro:
+Team vincitore: '.$vincitore.'
+Team sconfitto: '.$sconfitto.'
+Screenshoot: '.$path.' ';
 
 				$headers = 	'From: newresult@titadota2.com' . "\r\n" .
 							'Reply-To: webmaster@example.com' . "\r\n" .
@@ -55,7 +56,7 @@ Team vincitore: '.$vincitore.'
 Team sconfitto: '.$sconfitto.'
 Screenshoot: '.$path.' ';
 
-				$headers = 	'From: newresult@titadota2.com' . "\r\n" .
+				$headers = 	'From: noreply@titadota2.com' . "\r\n" .
 							'Reply-To: webmaster@example.com' . "\r\n" .
 							'X-Mailer: PHP/' . phpversion();
 
