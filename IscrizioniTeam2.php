@@ -34,7 +34,7 @@ $profile8 = @$_POST['steamurl8'];
 		$string = file_get_contents($filename);
 	}
 	if(empty($name) || empty($email)) exit("Variabili non valide"); //controllo del non vuoto
-	$esplosione = ''.$name.'_'.$email.'';
+	$esplosione = ''.$name.'/'.$email.'';
 	//controllo che la stringa non sia vuota
 	if (isset($string)){
 	    //decodifico il file

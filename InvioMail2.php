@@ -9,11 +9,11 @@ $check1 = @$_POST['check1'];
 $check2 = @$_POST['check2'];
 $check3 = @$_POST['check3'];
 
-$team1_temp = explode("_",$team1);
+$team1_temp = explode("/",$team1);
 $mail1 = $team1_temp[1];
-$team2_temp = explode("_",$team2);
+$team2_temp = explode("/",$team2);
 $mail2 = $team2_temp[1];
-$caster_temp = explode("_",$caster);
+$caster_temp = explode("/",$caster);
 $mail3 = $caster_temp[1];
 
 echo '<center>Mail inviate con successo!</center>';

@@ -15,7 +15,7 @@ $commento = @$_POST['commento'];
 		$string = file_get_contents($filename);
 	}
 	if(empty($nick) || empty($email)) exit("Variabili non valide"); //controllo del non vuoto
-	$esplosione = ''.$nick.'_'.$email.'';
+	$esplosione = ''.$nick.'/'.$email.'';
 	//controllo che la stringa non sia vuota
 	if (isset($string)){
 	    //decodifico il file

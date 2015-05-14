@@ -5,10 +5,10 @@ $sconfitto_imploso = @$_POST['Team2'];
 $ora = date("H,i,s");
 $data = date("d,m,Y"); 
 
-$vincitore_temp = explode("_",$vincitore_imploso);
+$vincitore_temp = explode("/",$vincitore_imploso);
 $vincitore = $vincitore_temp[0];
 $mail1 = $vincitore_temp[1];
-$sconfitto_temp = explode("_",$sconfitto_imploso);
+$sconfitto_temp = explode("/",$sconfitto_imploso);
 $sconfitto = $sconfitto_temp[0];
 $mail2 = $sconfitto_temp[1];
 
