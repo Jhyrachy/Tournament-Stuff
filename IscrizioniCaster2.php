@@ -2,11 +2,16 @@
 // Receive form Post data and Saving it in variables
 
 $name = @$_POST['name'];
-$nick = @$_POST['nick'];
-$email = @$_POST['email'];
+$nick2 = @$_POST['nick'];
+$email2 = @$_POST['email'];
 $profile = @$_POST['steamurl'];
 $url = @$_POST['sito'];
 $commento = @$_POST['commento'];
+
+//sanitizzazione
+$nick = filter_var($nick2, FILTER_SANITIZE_STRING);
+$email = filter_var($email2, FILTER_SANITIZE_EMAIL);
+
 
 //testiamo il json
 	$filename = "casterContact.json";
@@ -50,9 +55,9 @@ Commento: '.$commento.'
 ==============================================================================
 ';
 
-echo '<center> Grazie per esserti iscritto come caster! <br><br>
+echo '<center> <b><u>Grazie per esserti iscritto come caster!</b></u> <br><br>
 Le iscrizioni chiuderanno in data 20 Giugno. <br>
-Per favore controllate le mail (Anche nello spam! O aggiungete alla whitelist la mail: noreply@titadota2.com) in quei giorni per confermare la vostra presenza! <br>
+Per favore controllate le mail (<b>Anche nello spam!</b> O aggiungete alla whitelist la mail: noreply@titadota2.com) in quei giorni per confermare la vostra presenza! <br>
 Questi sono i dati con cui vi siete registrati: <br><br>
 
 Nome Team: '.$name.'<br>
