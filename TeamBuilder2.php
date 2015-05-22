@@ -8,6 +8,11 @@ $mmr = @$_POST['mmr'];
 $ruoli = @$_POST['ruoli'];
 $numero = @$_POST['contatore'];
 
+if(empty($nick) || empty($email) || empty($profile)){
+		echo '<body><center>Assicuratevi di aver completato tutti i campi richiesti e riprovare!<center></body>'; //controllo del non vuoto
+		exit();
+	}
+
 $filename1 = "spaiati1.txt";
 $filename2 = "spaiati2.txt";
 $filename3 = "spaiati3.txt";
@@ -29,29 +34,29 @@ switch($numero){
 		$file = fopen($filename1, "a");
 		fwrite($file,$f_data);
 		fclose($file);
-		$urler = 'http://www.titadota2.com/spaiati1.txt';
+		$urler = 'http://www.site.com/spaiati1.txt';
 		break;
 	case '2':
 		$file = fopen($filename2, "a");
 		fwrite($file,$f_data);
 		fclose($file);
-		$urler = 'http://www.titadota2.com/spaiati2.txt';
+		$urler = 'http://www.site.com/spaiati2.txt';
 		break;
 	case '3':
 		$file = fopen($filename3, "a");
 		fwrite($file,$f_data);
 		fclose($file);
-		$urler = 'http://www.titadota2.com/spaiati3.txt';
+		$urler = 'http://www.sitecom/spaiati3.txt';
 		break;
 	case '4':
 		$file = fopen($filename4, "a");
 		fwrite($file,$f_data);
 		fclose($file);
-		$urler = 'http://www.titadota2.com/spaiati4.txt';
+		$urler = 'http://www.site.com/spaiati4.txt';
 		break;
 }
 
-echo '<center> Grazie per aver inviato la richiesta!<br>
+echo '<body><center> Grazie per aver inviato la richiesta!<br>
 Controllate frequentemente la e-mail per informazioni riguardo altri giocatori con cui formare una squadra!<br>
 Verrete contattati non appena si iscriveranno giocatori con requisiti compatibili ai vostri.<br>
 Non assicuriamo che questo sia possibile, ma faremo del nostro meglio per aiutarvi a trovare i membri mancanti! <br>
@@ -64,9 +69,9 @@ Profile: '.$profile.'<br>
 Email: '.$email.' <br>
 MMR medio: '.$mmr.'<br>
 Ruoli copribili: '.$ruoli.'<br>
-Numero Giocatori: '.$numero.'</center>';
+Numero Giocatori: '.$numero.'</center></body>';
 
-$to      = 'titadota2@gmail.com';
+$to      = 'email@email.it';
 $subject = 'Nuovo Gruppo - Numero giocatori:'.$numero.'';
 $message = '
 Questi sono i dati con cui si è registrato:
@@ -81,7 +86,7 @@ Numero Giocatori: '.$numero.'
 
 Tutti gli iscritti si trovano a questo link: '.$urler.'';
 
-$headers = 'From: teambuilder@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
     'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
@@ -104,8 +109,8 @@ MMR medio: '.$mmr.'
 Ruoli copribili: '.$ruoli.'
 Numero Giocatori: '.$numero.'';
 
-$headers = 'From: noreply@titadota2.com' . "\r\n" .
-    'Reply-To: postmaster@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to2, $subject, $message, $headers);

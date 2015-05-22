@@ -12,6 +12,11 @@ $commento = @$_POST['commento'];
 $nick = filter_var($nick2, FILTER_SANITIZE_STRING);
 $email = filter_var($email2, FILTER_SANITIZE_EMAIL);
 
+//controllo campi vuoti
+if(empty($profile)){
+		echo '<body><center>Controllare di avere inserito il profilo Steam!</center></body>'; //controllo del non vuoto
+		exit();
+	}
 
 //testiamo il json
 	$filename = "casterContact.json";
@@ -19,7 +24,10 @@ $email = filter_var($email2, FILTER_SANITIZE_EMAIL);
 	if(file_exists($filename) && $string=file_get_contents($filename) !== false){
 		$string = file_get_contents($filename);
 	}
-	if(empty($nick) || empty($email)) exit("Variabili non valide"); //controllo del non vuoto
+	if(empty($nick) || empty($email)){
+		echo '<body><center>Variabili non valide</center</body>'; //controllo del non vuoto
+		exit();
+	}
 	$esplosione = ''.$nick.'/'.$email.'';
 	//controllo che la stringa non sia vuota
 	if (isset($string)){
@@ -55,7 +63,7 @@ Commento: '.$commento.'
 ==============================================================================
 ';
 
-echo '<center> <b><u>Grazie per esserti iscritto come caster!</b></u> <br><br>
+echo '<body><center><b><u>Grazie per esserti iscritto come caster!</b></u> <br><br>
 Le iscrizioni chiuderanno in data 20 Giugno. <br>
 Per favore controllate le mail (<b>Anche nello spam!</b> O aggiungete alla whitelist la mail: noreply@titadota2.com) in quei giorni per confermare la vostra presenza! <br>
 Questi sono i dati con cui vi siete registrati: <br><br>
@@ -65,7 +73,7 @@ Nickname:  '.$nick.'<br>
 Profile: '.$profile.'<br>
 Email: '.$email.'<br>
 Sito: '.$url.'<br>
-Commento: '.$commento.'</center>';
+Commento: '.$commento.'</center></body>';
 
 
 $file = fopen($filename, "a");
@@ -80,7 +88,7 @@ $file = fopen($filename, "a");
 fwrite($file,$f_data);
 fclose($file);
 
-$to      = 'titadota2@gmail.com';
+$to      = 'webmaster@example.com';
 $subject = 'Nuovo Caster - '.$nick.'';
 $message = '
 Questi sono i dati con cui si è registrato:
@@ -92,7 +100,8 @@ Email: '.$email.'
 Sito/Stream: '.$url.'
 Commento: '.$commento.'
 
-Tutti gli iscritti si trovano a questo link: http://www.titadota2.com/Casters.txt';
+Tutti gli iscritti si trovano a questo link: http://www.site.com/Casters.txt
+La mailing list si trova qui: http://www.site.com/mailingCasters.txt';
 
 $headers = 'From: newcaster@titadota2.com' . "\r\n" .
     'Reply-To: webmaster@example.com' . "\r\n" .
@@ -116,8 +125,8 @@ Email: '.$email.'
 Sito/Stream: '.$url.'
 Commento: '.$commento.'';
 
-$headers = 'From: noreply@titadota2.com' . "\r\n" .
-    'Reply-To: postmaster@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to2, $subject, $message, $headers);

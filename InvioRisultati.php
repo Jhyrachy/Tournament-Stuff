@@ -20,11 +20,11 @@
 			$opts .= '<option value="'.$email.'">'.$name.'</option>';
 		}
 		
-		echo ' <select name="Team1">'.$opts.'</select> <br> ';
-		echo ' <select name="Team2">'.$opts.'</select> <br>';
+		echo '<select name="Team1">'.$opts.'</select> <br>';
+		echo '<select name="Team2">'.$opts.'</select> <br>';
 	}
 	else
-		echo 'Nessuna lista contatti disponibile! <br>';
+		echo '<body>Nessuna lista contatti disponibile! <br></body>';
 ?>
 <input type="hidden" name="uploading"/>
 <br/>Screenshoot dei risultati: <input name="image" type="file" required />

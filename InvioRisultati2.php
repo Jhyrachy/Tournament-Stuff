@@ -23,28 +23,28 @@ if(isset($_FILES['image'])){
 		
 		$expensions= array("jpeg","jpg","png"); 		
 		if(in_array($file_ext,$expensions)=== false){
-			$errors[]="Formato non corretto! Riprova con un'immagine jpg/jpeg o png!";
+			$errors[]="<body>Formato non corretto! Riprova con un'immagine jpg/jpeg o png!</body>";
 		}
 		if($file_size > 1024000){
 		$errors[]='File troppo grande!';
 		}				
 		if(empty($errors)==true){
-			move_uploaded_file($file_tmp,"screenshoots/".$file_name);
-			$url = 'http://www.titadota2.com/screenshoots/';
+			move_uploaded_file($file_tmp,'screenshoots/'.$file_name);
+			$url = 'http://www.site.com/screenshoots/';
 			$notencoded = $url.$file_name;
 			$path = $new = str_replace(' ', '%20', $notencoded);
-			echo '<center>Risultati inviati correttamente! <br>
+			echo '<body><center>Risultati inviati correttamente! <br>
 			Screenshoot salvato!<br>			
-				<a href="'.$path.'">Premi qui per visualizzarlo </a> <br><br></center>';
+				<a href="'.$path.'">Premi qui per visualizzarlo </a> <br><br></center></body>';
 				
-				$to      = 'titadota2@gmail.com';
+				$to      = 'webmaster@example.com';
 				$subject = 'W: '.$vincitore.' - L: '.$sconfitto.'';
 				$message = 'Risultati incontro:
 Team vincitore: '.$vincitore.'
 Team sconfitto: '.$sconfitto.'
 Screenshoot: '.$path.' ';
 
-				$headers = 	'From: newresult@titadota2.com' . "\r\n" .
+				$headers = 	'From: webmaster@example.com' . "\r\n" .
 							'Reply-To: webmaster@example.com' . "\r\n" .
 							'X-Mailer: PHP/' . phpversion();
 
@@ -56,7 +56,7 @@ Team vincitore: '.$vincitore.'
 Team sconfitto: '.$sconfitto.'
 Screenshoot: '.$path.' ';
 
-				$headers = 	'From: noreply@titadota2.com' . "\r\n" .
+				$headers = 	'From: webmaster@example.com' . "\r\n" .
 							'Reply-To: webmaster@example.com' . "\r\n" .
 							'X-Mailer: PHP/' . phpversion();
 

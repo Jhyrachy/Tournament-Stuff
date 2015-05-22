@@ -31,20 +31,39 @@ $profile8 = @$_POST['steamurl8'];
 $name = filter_var($name2, FILTER_SANITIZE_STRING);
 $email = filter_var($email2, FILTER_SANITIZE_EMAIL);
 
+//controllo campi vuoti
+if(empty($nick) || empty($nick2) || empty($nick3) || empty($nick4) || empty($nick5)){
+		echo '<body><center>Controllare di avere inserito i nickname di tutti i giocatori!</center></body>'; //controllo del non vuoto
+		exit();
+	}
+
+if(empty($profile) || empty($profile2) || empty($profile3) || empty($profile4) || empty($profile5)){
+		echo '<body><center>Controllare di avere inserito tutti i profili Steam!</center></body>'; //controllo del non vuoto
+		exit();
+	}
+	
 //testiamo il json
 	$filename = "teamContact.json";
 	
 	if(file_exists($filename) && $string=file_get_contents($filename) !== false){
 		$string = file_get_contents($filename);
 	}
-	if(empty($name) || empty($email)) exit("Variabili non valide"); //controllo del non vuoto
+	if(empty($name) || empty($email)){
+		echo '<body><center>Controllare di avere inserito nome e email</center></body>'; //controllo del non vuoto
+		exit();
+	}
 	$esplosione = ''.$name.'/'.$email.'';
 	//controllo che la stringa non sia vuota
 	if (isset($string)){
 	    //decodifico il file
 		$json = json_decode($string, true);
 		//controllo che la chiave equivalente a json[name] non sia giù usata
-		if (!empty($json[$name])) exit("$name gia' registrato");
+		if (!empty($json[$name])){
+			
+			echo '<html><body>'.$name.' attualmente registrato</body></html>';
+			exit();
+			
+		}
 		//assegno la chiave
         $json[$name] = $esplosione;
 	}
@@ -92,7 +111,7 @@ Profilo: '.$profile8.'
 ==============================================================================
 ';
 
-echo '<center><b><u>Grazie per esservi iscritti!</b></u> <br><br>
+echo '<body><center><b><u>Grazie per esservi iscritti!</b></u> <br><br>
 Le iscrizioni chiuderanno in data 20 Giugno. <br>
 Per favore controllate la mail (<b>Anche nello spam!</b> O aggiungete alla whitelist la mail: noreply@titadota2.com) in quei giorni per confermare la vostra presenza! <br>
 Questi sono i dati con cui vi siete registrati: <br><br>
@@ -120,7 +139,7 @@ Standin 2: '.$nick7.'<br>
 Profilo: '.$profile7.'<br>
 <br>
 Standin 3: '.$nick8.'<br>
-Profilo: '.$profile8.'</center>';
+Profilo: '.$profile8.'</center></body>';
 
 $file = fopen($filename, "a");
 fwrite($file,$f_data);
@@ -136,7 +155,7 @@ fwrite($file,$f_data);
 fclose($file);
 
 //mail a crus
-$to      = 'titadota2@gmail.com';
+$to      = 'email@email.it';
 $subject = 'Nuovo Team - '.$name.'';
 $message = '
 Questi sono i dati con cui si sono registrati:
@@ -166,10 +185,10 @@ Profilo: '.$profile7.'
 
 Standin 3: '.$nick8.'
 Profilo: '.$profile8.'
-Tutti gli iscritti si trovano a questo link: http://www.titadota2.com/Team.txt
-Tutti le mail si trovano a questo link: http://www.titadota2.com/TeamMail.txt';
+Tutti gli iscritti si trovano a questo link: http://www.site.com/Team.txt
+La mailing list si trova qui: http://www.site.com/mailingTeam.txt';
 
-$headers = 'From: newteam@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
     'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
@@ -185,7 +204,7 @@ Per favore controllate la mail (Anche nello spam! O aggiungete alla whitelist la
 Questi sono i dati con cui vi siete registrati:
 
 Nome Team: '.$name.'
-Giocatore 1:  '.$nick.'
+Giocatore 1: '.$nick.'
 Profilo: '.$profile.'
 Email: '.$email.' 
 
@@ -210,8 +229,8 @@ Profilo: '.$profile7.'
 Standin 3: '.$nick8.'
 Profilo: '.$profile8.'';
 
-$headers = 'From: noreply@titadota2.com' . "\r\n" .
-    'Reply-To: postmaster@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 mail($to, $subject, $message, $headers);

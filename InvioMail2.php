@@ -16,10 +16,10 @@ $mail2 = $team2_temp[1];
 $caster_temp = explode("/",$caster);
 $mail3 = $caster_temp[1];
 
-echo '<center>Mail inviate con successo!</center>';
+echo '<body><center>Mail inviate con successo!</center></body>';
 
-$headers = 'From: noreply@titadota2.com' . "\r\n" .
-    'Reply-To: postmaster@titadota2.com' . "\r\n" .
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 if($check1 == "Yes"){
 	mail($mail1, $subject, $message, $headers);
